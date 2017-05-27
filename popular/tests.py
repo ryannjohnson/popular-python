@@ -1,7 +1,7 @@
 import pytest
 
 from .exceptions import SocialError
-from .manager import Manager
+from . import Popular as Manager
 
 
 def test_manager_empty_success():
