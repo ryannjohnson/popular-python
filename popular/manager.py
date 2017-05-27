@@ -81,4 +81,4 @@ class Manager(object):
         try:
             return self.providers[name]
         except KeyError:
-            raise SocialError(exist_msg)
+            raise SocialError(exist_msg % name)
