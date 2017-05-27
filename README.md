@@ -42,14 +42,12 @@ manager = Popular({
 })
 
 # Get the authorization link for the user.
-state_str = generate_random_string()
-url = manager.provider('facebook').get_auth_url(state=state_str)
+url = manager.provider('facebook').get_auth_url(state='randomstring1')
 
 # Use the resulting URL to get the user information from the service.
-incoming_url = 'https://example.com/callback?code=abc123&state=randomstring1'
 user = manager.provider('facebook').get_user(
-    uri=incoming_url,
-    state=state_str,
+    uri='https://example.com/callback?code=abc123&state=randomstring1',
+    state='randomstring1',
 )
 print(user.to_dict())
 ```
