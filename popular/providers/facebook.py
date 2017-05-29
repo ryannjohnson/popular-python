@@ -101,10 +101,8 @@ class FacebookProvider(Provider):
     def response_to_dict(self, response):
         """Helper to gracefully return error messages from API."""
         output = response.json()
-        if response.status_code != 200:
-            raise SocialProviderError(output['message'])
-        if 'error' in output:
-            raise SocialProviderError(output['error'])
+        if response.status_code != 200 or 'error' in output:
+            raise SocialProviderError(output['error']['message'])
         return output
 
 
