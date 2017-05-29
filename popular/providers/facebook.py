@@ -56,9 +56,8 @@ class FacebookProvider(Provider):
         """
         # See if the uri has what we expect.
         uri_params = self.parse_uri(uri, required=['code', 'state'])
-        if state:
-            if uri_params['state'] != state:
-                raise SocialError(_("The state parameter is invalid."))
+        if uri_params['state'] != state:
+            raise SocialError(_("The state parameter is invalid."))
 
         # Get the access token from the API.
         url = 'https://graph.facebook.com/%s/oauth/access_token' % (

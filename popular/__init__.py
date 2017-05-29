@@ -15,7 +15,7 @@ interaction with the social auth provider.
 """
 
 __license__ = 'MIT License'
-__version__ = '0.1.3'
+__version__ = '0.1.4'
 
 
 from .manager import Manager as Popular
