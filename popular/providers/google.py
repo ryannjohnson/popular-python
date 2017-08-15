@@ -93,9 +93,17 @@ class GoogleProvider(Provider):
         """Helper to gracefully return error messages from API."""
         output = response.json()
         if response.status_code != 200:
-            raise SocialProviderError(output['message'])
-        if 'error' in output:
-            raise SocialProviderError(output['error'])
+            if 'error' in output:
+                if 'message' in output['error']:
+                    err = SocialProviderError(output['error']['message'])
+                else:
+                    err = SocialProviderError(output['error'])
+            else:
+                err = SocialProviderError(output)
+            err.original = response
+            raise err
+
+
         return output
 
 
